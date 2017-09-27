@@ -1,0 +1,66 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf820
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww12600\viewh7800\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Oracle\
+\
+\
+\
+datapump\
+\
+Register the directory not only in server but also in db level.\
+\
+Create directory dp_dir as \'91/u/oracle/BACK\'92\
+\
+Expdp attach=job file name\
+\
+\
+\
+1.source db-create a table space xyz and create a user abc and assign the table space to the user\
+Create some tables in that user and take the export\
+Target db-create a user manually def and create a table space yup and assign to the table space and import it \
+solution-\
+remap_tablespace\
+\
+\
+2.take a schema level export With 50 tables and try to import on the same schema\
+Solution-import that by specifying tables_exist_action=delete(truncate) or may be u can even write a sql script.\
+e.g.:\
+set lines 300 \
+set pages 300\
+spool a.sql\
+Spool is used to write an output of any query to a flat file\
+\
+select 'drop table '|| table_name || ';' from user_tables;\
+\
+spool off;\
+And run it at the databasffe level using @a.sql\
+\
+Important scenarios about data pump:\
+1.different schema and different tablespace\
+   In this case, we have to specify the remap_schema and remap_tablespace to remap the contents to the target database .Only the table and the data will be remapped\
+\
+\
+Listener \
+\'85 server name and ip\
+  Port number\
+  Service name \
+  Dbsid \
+Gmail.com\
+\
+\
+Netca-make a listener graphically\
+\
+We need tns to-\
+Materialised viewT\
+DBLINK-\
+Replication\
+Data guard\
+rephrase\
+\
+Ps -ef|grep tns\
+Lsnrctl status LISTENER\
+}
